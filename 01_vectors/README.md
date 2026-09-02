@@ -1,38 +1,16 @@
 01 — Vectors
 
-AI/DS Micro-Lab · Mathematical Foundations
+Part of the 30-Day AI/DS Micro-Lab
 
-""Python" (https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)" (https://www.python.org/)
-""Topic" (https://img.shields.io/badge/Topic-Linear%20Algebra-orange)"
-""Level" (https://img.shields.io/badge/Level-Foundation-green)"
-
-«Learning objective: Understand what vectors are, how their dimensions work, and how to implement vector addition in Python.»
+«Goal: Build a solid mathematical and Python foundation for AI and Data Science through small, executable experiments.»
 
 ---
 
-Learning Path
-
-Vector
-  │
-  ├── Components
-  │
-  ├── Dimension
-  │
-  ├── Indexing
-  │
-  ├── Modification
-  │
-  └── Addition
-        │
-        └── Dimension compatibility
-
----
-
-1. What Is a Vector?
+What is a Vector?
 
 A vector is an ordered collection of numbers.
 
-Mathematical view
+Mathematically:
 
 [
 \mathbf{x} =
@@ -43,61 +21,45 @@ Mathematical view
 \end{bmatrix}
 ]
 
-Python view
+In Python:
 
 x = [3, 50, 9]
 
-Think of the vector as a container whose position matters:
+This vector has 3 components, so its dimension is:
 
-        Vector x
-
-       ┌─────┐
-x[0] → │  3  │
-       ├─────┤
-x[1] → │ 50  │
-       ├─────┤
-x[2] → │  9  │
-       └─────┘
-
-The order is important.
-
-[3, 50, 9] ≠ [50, 3, 9]
+[
+\boxed{\dim(\mathbf{x}) = 3}
+]
 
 ---
 
-2. Components
+1. Vector Components
 
-The individual numbers inside a vector are called components.
-
-For:
+Each number in a vector is a component.
 
 x = [3, 50, 9]
-
-we have:
 
 Index| Component
 "0"| "3"
 "1"| "50"
 "2"| "9"
 
-Python uses zero-based indexing.
+Python uses zero-based indexing:
 
-x[0]     # 3
-x[1]     # 50
-x[2]     # 9
-x[-1]    # 9
-
-«Key idea: "x[i]" means "the component at index "i"."»
+x[0]    # 3
+x[1]    # 50
+x[2]    # 9
+x[-1]   # 9
 
 ---
 
-3. Dimension
+2. Vector Dimension
 
 The dimension of a vector is the number of components it contains.
 
 x = [4, 7, 2, 9]
 
-There are four components:
+Therefore:
 
 [
 \boxed{\dim(\mathbf{x}) = 4}
@@ -111,47 +73,25 @@ returns:
 
 4
 
-Visual intuition
-
-[ 4 ] [ 7 ] [ 2 ] [ 9 ]
-  ↑     ↑     ↑     ↑
-  1     2     3     4
-
-        dimension = 4
-
 ---
 
-4. Changing a Component
+3. Changing a Component
 
-Python lists are mutable.
-
-That means we can change an existing component.
+Python lists are mutable, so we can change individual components.
 
 x = [3, 50, 9]
 
 x[1] = 100
 
-Before:
+The vector becomes:
 
-[ 3, 50, 9 ]
-     ↑
-
-After:
-
-[ 3, 100, 9 ]
-      ↑
-
-The dimension has not changed.
-
-[
-\boxed{\dim(\mathbf{x}) = 3}
-]
+[3, 100, 9]
 
 ---
 
-5. Vector Addition
+4. Vector Addition
 
-Vector addition works component by component.
+Vector addition is performed component by component.
 
 Consider:
 
@@ -171,13 +111,17 @@ Consider:
 \end{bmatrix}
 ]
 
-We add the corresponding components:
+Both vectors have dimension 3:
 
-  3       1       4
- 50   +   2   =  52
-  9       4      13
+[
+\dim(\mathbf{a}) = 3
+]
 
-Therefore:
+[
+\dim(\mathbf{b}) = 3
+]
+
+Therefore, addition is defined:
 
 [
 \mathbf{a}+\mathbf{b}
@@ -200,83 +144,60 @@ In Python:
 a = [3, 50, 9]
 b = [1, 2, 4]
 
-Result:
+The result is:
 
 [4, 52, 13]
 
 ---
 
-6. Dimension Compatibility
+Important Rule
 
-There is one important condition:
+«Vector addition requires equal dimensions.»
 
-[
-\boxed{\dim(\mathbf{a}) = \dim(\mathbf{b})}
-]
-
-Vector addition is only defined when the dimensions are equal.
-
-Valid
-
-a = [3, 50, 9]
-b = [1, 2, 4]
-
-dimension(a) = 3
-dimension(b) = 3
-
-        ✓ Addition defined
-
-Invalid
+For example:
 
 a = [2, 4, 6]
 b = [10, 20]
 
-dimension(a) = 3
-dimension(b) = 2
+Here:
 
-        ✗ Addition not defined
+[
+\dim(\mathbf{a}) = 3
+]
 
-Mathematically:
+[
+\dim(\mathbf{b}) = 2
+]
+
+Since:
 
 [
 3 \ne 2
 ]
 
-There is no corresponding component for the third element of "a".
+the vectors cannot be added.
 
 ---
 
-7. Python Lists Are Not Mathematical Vectors
+5. Python Lists vs. Mathematical Vectors
 
-This is an important Python lesson.
-
-You might expect:
+A Python list's "+" operator does not perform mathematical vector addition.
 
 [1, 2, 3] + [4, 5, 6]
 
-to produce:
-
-[5, 7, 9]
-
-But Python produces:
+produces:
 
 [1, 2, 3, 4, 5, 6]
 
-Why?
+This is list concatenation.
 
-Because "+" for Python lists means concatenation.
-
-List + List
-    ↓
-Concatenation
-
-It does not automatically perform mathematical vector addition.
-
-Therefore, we implement the mathematical operation ourselves.
+Mathematical vector addition must be implemented component by component.
 
 ---
 
-8. Implementing Vector Addition
+6. "vector_add()"
+
+The implementation in "vector.py" is:
 
 def vector_add(a, b):
     if len(a) == len(b):
@@ -284,48 +205,25 @@ def vector_add(a, b):
     else:
         raise ValueError("Vectors must have the same dimension.")
 
-How it works
+What it does
 
-① Check dimensions
+Step 1 — Check dimensions
 
 len(a) == len(b)
 
-② Add corresponding components
+Step 2 — Add corresponding components
 
 [a[i] + b[i] for i in range(len(a))]
 
-③ Reject incompatible vectors
+Step 3 — Reject incompatible vectors
 
 raise ValueError("Vectors must have the same dimension.")
 
 ---
 
-9. Why "ValueError"?
+7. Why Vectors Matter in AI/Data Science
 
-Suppose:
-
-a = [1, 2, 3]
-b = [4, 5]
-
-The vectors have different dimensions:
-
-[
-3 \ne 2
-]
-
-So the operation is invalid.
-
-Instead of silently producing a wrong result, the program explicitly stops and reports the problem:
-
-ValueError: Vectors must have the same dimension.
-
-This is preferable to simply printing ""Error"" because Python knows that the function encountered invalid input.
-
----
-
-10. Vectors in AI & Data Science
-
-Vectors are fundamental to AI and Data Science.
+Vectors are one of the basic building blocks of AI and Data Science.
 
 A data point can be represented as a vector of features:
 
@@ -342,120 +240,58 @@ For example:
 
 x = [35, 60000, 8]
 
-This represents:
+Here:
 
-┌───────────────┐
-│ Age        35 │
-│ Income  60000 │
-│ Experience  8 │
-└───────────────┘
+- "35" → age
+- "60000" → income
+- "8" → years of experience
 
-So:
+The vector has dimension 3.
+
+Vectors later become fundamental to:
+
+- machine learning datasets
+- feature representations
+- linear regression
+- neural networks
+- embeddings
+- optimization
+- matrix operations
+
+---
+
+Key Takeaways
+
+Vector
+
+An ordered collection of numbers.
+
+Dimension
+
+The number of components in a vector.
+
+Vector addition
+
+Add corresponding components.
+
+Compatibility
 
 [
-\boxed{\dim(\mathbf{x}) = 3}
+\boxed{\dim(\mathbf{a}) = \dim(\mathbf{b})}
 ]
 
-Vectors will later appear everywhere:
+is required for vector addition.
 
-Vectors
-   │
-   ├── Features
-   ├── Data points
-   ├── Model parameters
-   ├── Embeddings
-   ├── Neural-network activations
-   └── Optimization
+Python
+
+A Python list is useful for representing a simple vector, but Python list operations do not automatically behave like mathematical vector operations.
 
 ---
 
-11. Mini Practice
+Files
 
-Exercise 1
+01_vectors/
+├── README.md
+└── vector.py
 
-What is the dimension?
-
-x = [8, 3, 11, 6, 2]
-
-Answer:
-
-[
-\boxed{5}
-]
-
----
-
-Exercise 2
-
-What is "x[-1]"?
-
-x = [8, 3, 11, 6, 2]
-
-Answer:
-
-2
-
----
-
-Exercise 3
-
-Can these vectors be added?
-
-a = [1, 2, 3]
-b = [4, 5]
-
-Answer:
-
-No.
-
-because:
-
-[
-\dim(\mathbf{a}) = 3
-]
-
-[
-\dim(\mathbf{b}) = 2
-]
-
-and:
-
-[
-3 \ne 2
-]
-
----
-
-Key Rules
-
-Concept| Rule
-Vector| Ordered collection of numbers
-Component| Individual number in a vector
-Dimension| Number of components
-Python indexing| Starts at "0"
-"x[-1]"| Last component
-List mutation| Components can be changed
-Vector addition| Add corresponding components
-Addition requirement| Dimensions must be equal
-Python list "+"| Concatenates lists
-Invalid dimensions| Raise "ValueError"
-
----
-
-Project Structure
-
-30-day-ai-ds-micro-lab/
-│
-├── 01_vectors/
-│   ├── README.md
-│   └── vector.py
-│
-└── ...
-
----
-
-Foundation Principle
-
-«Before performing an operation on vectors, always check that their dimensions are compatible.»
-
-This habit will become increasingly important when we move from vectors to matrices, neural networks, and machine-learning models.
+"vector.py" contains the Python implementation of the vector operations learned in this exercise.

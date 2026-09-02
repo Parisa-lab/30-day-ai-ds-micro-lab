@@ -18,15 +18,13 @@ x = [3, 50, 9]
 
 The numbers inside the vector are called **components**.
 
-```text
-x = [3, 50, 9]
-     ↑   ↑  ↑
-     │   │  └── third component
-     │   └───── second component
-     └───────── first component
-```
+For this vector:
 
-In Python, we can represent this vector using a list:
+- `3` is the first component
+- `50` is the second component
+- `9` is the third component
+
+In Python:
 
 ```python
 x = [3, 50, 9]
@@ -52,7 +50,7 @@ Second component = 50
 Third component  = 9
 ```
 
-In Python, indexing starts from `0`:
+Python uses **zero-based indexing**, so:
 
 ```python
 x[0]  # 3
@@ -60,12 +58,12 @@ x[1]  # 50
 x[2]  # 9
 ```
 
-So:
+The relationship is:
 
 ```text
-Python index:     0    1    2
-                  ↓    ↓    ↓
-Vector:          [3,  50,   9]
+Python index:   0    1    2
+                ↓    ↓    ↓
+Vector:        [3,  50,   9]
 ```
 
 ---
@@ -151,15 +149,14 @@ Therefore:
 a + b = [6, 8]
 ```
 
-The important rule is:
+The rule is:
 
-**First component + first component**
-
-**Second component + second component**
-
-**Third component + third component**
-
-and so on.
+```text
+first component  + first component
+second component + second component
+third component  + third component
+...
+```
 
 ---
 
@@ -300,7 +297,7 @@ Result:
 
 ---
 
-## 10. The `vector_add()` Function
+## 10. The vector_add() Function
 
 We can turn the operation into a reusable function:
 
@@ -329,7 +326,7 @@ Output:
 
 ---
 
-## 11. Why Use `ValueError`?
+## 11. Why Use ValueError?
 
 Suppose we try:
 
@@ -389,7 +386,7 @@ dimension = 3
 
 A machine learning model can use this vector as numerical input.
 
-In a more general form:
+In general:
 
 ```text
 x = [feature_1, feature_2, feature_3, ..., feature_n]
@@ -423,7 +420,6 @@ Each number inside a vector is a component.
 
 ```text
 x = [3, 50, 9]
-     ↑   ↑  ↑
 ```
 
 ### Dimension
